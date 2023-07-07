@@ -1,0 +1,16 @@
+<template>
+    <ul repeat.for="todo of todos">
+        <li>
+            <label>
+                <span css="text-decoration: ${todo.done ? 'line-through' : 'none'}">${todo.description}</span>
+                <input type="checkbox" checked.bind="todo.done"/>
+                <button click.trigger="rmTodo(todo)" type="button">X</button>
+            </label>
+        </li>
+    </ul>
+    <label>
+        <input type="text" value.bind="newTodo"/>
+        <button click.trigger="addTodo()" type="submit">Add</button>
+    </label>
+    <router-view></router-view>
+</template>
