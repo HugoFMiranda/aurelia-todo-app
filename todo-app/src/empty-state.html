@@ -1,0 +1,24 @@
+<template>
+  <div
+    click.delegate="isNewTodo() ? openModal() : ''"
+    class="${isNewTodo() ? 'cursor-pointer' : ''} grid place-items-center bg-indigo-100 w-full min-h-[80vh] rounded-lg border-2 p-12 border-dashed border-gray-300 text-center hover:border-blue-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-150 ease-in-out">
+    <div>
+      <span class="select-none" if.bind="!isNewTodo()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+             class="mx-auto w-12 h-12 text-gray-400">
+      <path stroke-linecap="round" stroke-linejoin="round"
+            d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+    <span class="mt-2 block text-sm font-semibold text-gray-400">${text}</span>
+    </span>
+      <span class="select-none" else>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+             class="mx-auto w-12 h-12 text-gray-400">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+    </svg>
+      <span class="mt-2 block text-sm font-semibold text-gray-400">Create</span>
+    </span>
+    </div>
+  </div>
+
+</template>
