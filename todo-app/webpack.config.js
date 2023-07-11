@@ -4,10 +4,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 const project = require('./aurelia_project/aurelia.json');
-const { AureliaPlugin } = require('aurelia-webpack-plugin');
-const { ProvidePlugin } = require('webpack');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {AureliaPlugin} = require('aurelia-webpack-plugin');
+const {ProvidePlugin} = require('webpack');
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 // config helpers:
 const ensureArray = (config) => config && (Array.isArray(config) ? config : [config]) || [];
@@ -39,7 +39,7 @@ const cssRules = [
 ];
 
 
-module.exports = ({ production }, { analyze, hmr, port, host }) => ({
+module.exports = ({production}, {analyze, hmr, port, host}) => ({
   resolve: {
     extensions: ['.js'],
     modules: [srcDir, 'node_modules'],
@@ -196,7 +196,7 @@ module.exports = ({ production }, { analyze, hmr, port, host }) => ({
       }
     }
   },
-  performance: { hints: false },
+  performance: {hints: false},
   devServer: {
     // serve index.html for all 404 (required for push-state)
     historyApiFallback: true,
@@ -212,8 +212,8 @@ module.exports = ({ production }, { analyze, hmr, port, host }) => ({
       // only when the issuer is a .js/.ts file, so the loaders are not applied inside html templates
       {
         test: /\.css$/i,
-        issuer: { not: [ /\.html$/i ] },
-        use: [ { loader: MiniCssExtractPlugin.loader }, ...cssRules ]
+        issuer: {not: [/\.html$/i]},
+        use: [{loader: MiniCssExtractPlugin.loader}, ...cssRules]
       },
       {
         test: /\.css$/i,
@@ -224,14 +224,16 @@ module.exports = ({ production }, { analyze, hmr, port, host }) => ({
       },
       // Skip minimize in production build to avoid complain on unescaped < such as
       // <span>${ c < 5 ? c : 'many' }</span>
-      { test: /\.html$/i, loader: 'html-loader', options: { minimize: false } },
-      { test: /\.js$/i, loader: 'babel-loader', exclude: nodeModulesDir },
+      {test: /\.html$/i, loader: 'html-loader', options: {minimize: false}},
+      {test: /\.js$/i, loader: 'babel-loader', exclude: nodeModulesDir},
       // embed small images and fonts as Data Urls and larger ones as files:
-      { test: /\.(png|svg|jpg|jpeg|gif)$/i, type: 'asset' },
-      { test: /\.(woff|woff2|ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i,  type: 'asset' },
-      { test: /environment\.json$/i, use: [
-        {loader: "app-settings-loader", options: {env: production ? 'production' : 'development' }},
-      ]}
+      {test: /\.(png|svg|jpg|jpeg|gif)$/i, type: 'asset'},
+      {test: /\.(woff|woff2|ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i, type: 'asset'},
+      {
+        test: /environment\.json$/i, use: [
+          {loader: "app-settings-loader", options: {env: production ? 'production' : 'development'}},
+        ]
+      }
     ]
   },
   plugins: [
@@ -257,7 +259,7 @@ module.exports = ({ production }, { analyze, hmr, port, host }) => ({
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'static', to: outDir, globOptions: { ignore: ['.*'] } }
+        {from: 'static', to: outDir, globOptions: {ignore: ['.*']}}
       ]
     }), // ignore dot (hidden) files
     ...when(analyze, new BundleAnalyzerPlugin()),

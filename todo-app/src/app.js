@@ -1,5 +1,5 @@
 import {PLATFORM} from 'aurelia-pal';
-import {TodoItem} from "./todoItem";
+import {TodoItem} from "./todos/todoItem";
 
 export class App {
   configureRouter(config, router) {

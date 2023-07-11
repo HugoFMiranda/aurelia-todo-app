@@ -1,5 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: rgba(247, 244, 237, 0);
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #6366f1;
+    border-radius: 100vh;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #8688ef;
+  }
 }
 
 .page-host {
@@ -150,5 +174,46 @@ div.au-stagger {
   }
   100% {
     opacity: 1;
+  }
+}
+
+.fade-out {
+  animation-name: fadeOut;
+  animation-duration: 250ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    border: none;
+  }
+  100% {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+}
+
+.dragging {
+  animation: vibration 750ms linear infinite both;
+  opacity: 1;
+}
+
+@keyframes vibration {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  33% {
+    transform: translate(1px, 1px);
+  }
+  66% {
+    transform: translate(-1px, -1px);
+  }
+  100% {
+    transform: translate(0px, 0px);
   }
 }

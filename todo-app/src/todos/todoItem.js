@@ -1,10 +1,10 @@
 export class TodoItem {
 
-  states = ["todo", "doing", "done"];
+  status = ["Todo", "Doing", "Done"];
 
   constructor(text) {
     this.text = text;
-    this.state = this.states[0];
+    this.state = this.status[0];
   }
 
   getDone() {
