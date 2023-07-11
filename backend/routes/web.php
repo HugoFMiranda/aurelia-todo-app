@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -22,3 +23,9 @@ Route::get('/test-database', function () {
     $results = DB::select('SHOW TABLES');
     return response()->json($results);
 });
+
+Route::group(['prefix' => 'api'], function () {
+    Route::resource('todos', TodoController::class);
+});
+
+
