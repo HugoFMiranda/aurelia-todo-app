@@ -13,10 +13,16 @@ class Todo extends Model
     protected $fillable = [
         'text',
         'status_id',
+        'user_id',
     ];
 
     public function status(): BelongsTo
     {
         return $this->belongsTo(TodoStatuses::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

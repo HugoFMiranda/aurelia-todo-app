@@ -19,13 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test-database', function () {
-    $results = DB::select('SHOW TABLES');
-    return response()->json($results);
-});
-
-Route::group(['prefix' => 'api'], function () {
-    Route::resource('todos', TodoController::class);
-});
-
 

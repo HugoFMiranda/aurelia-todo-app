@@ -14,12 +14,16 @@ return new class extends Migration {
             $table->id();
             $table->string('text');
             $table->unsignedBigInteger('status_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
             $table->foreign('status_id')
                 ->references('id')
                 ->on('todo_statuses')
                 ->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
         });
     }
 

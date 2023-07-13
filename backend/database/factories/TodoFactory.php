@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Todo;
 use App\Models\TodoStatuses;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,6 +22,7 @@ class TodoFactory extends Factory
         return [
             'text' => $this->faker->sentence,
             'status_id' => TodoStatuses::inRandomOrder()->first()->id,
+            'user_id' => User::inRandomOrder()->first()->id,
         ];
     }
 }

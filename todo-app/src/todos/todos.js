@@ -1,6 +1,5 @@
 import {inject, observable} from 'aurelia-framework';
-import {TodoService} from './todos/todoService';
-import {TodoItem} from './todos/todoItem';
+import {TodoService} from '../common/services/todoService';
 
 @inject(TodoService)
 export class Todos {

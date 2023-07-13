@@ -1,40 +1,39 @@
 import {PLATFORM} from 'aurelia-pal';
-import {TodoItem} from "./todos/todoItem";
+import {inject} from "aurelia-framework";
+import {Router} from "aurelia-router";
 
+@inject(Router)
 export class App {
+  constructor(router) {
+    this.router = router;
+  }
+
   configureRouter(config, router) {
     config.title = 'Aurelia';
-    config.options.pushState = true;
     config.options.root = '/';
+    config.options.pushState = true;
     config.options.hashChange = false;
     config.map([
       {
         route: ['', 'welcome'],
         name: 'Welcome',
-        moduleId: PLATFORM.moduleName('./welcome'),
+        moduleId: PLATFORM.moduleName('welcome/welcome'),
         nav: true,
         title: 'Dashboard'
       },
       {
         route: 'todos',
         name: 'Todos',
-        moduleId: PLATFORM.moduleName('./todos'),
+        moduleId: PLATFORM.moduleName('todos/todos'),
         nav: true,
         title: 'Todos'
       },
       {
         route: 'users',
         name: 'users',
-        moduleId: PLATFORM.moduleName('./users'),
+        moduleId: PLATFORM.moduleName('users/users'),
         nav: true,
         title: 'Github Users'
-      },
-      {
-        route: 'child-router',
-        name: 'child-router',
-        moduleId: PLATFORM.moduleName('./child-router'),
-        nav: false,
-        title: 'Child Router'
       }
     ]);
 

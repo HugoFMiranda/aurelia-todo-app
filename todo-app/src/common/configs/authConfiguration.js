@@ -1,0 +1,17 @@
+export default {
+  baseUrl: 'http://localhost:8000',
+  loginUrl: '/api/auth/login',
+  signupUrl: '/api/auth/signup',
+  profileUrl: '/api/auth/me',
+  tokenName: 'token',
+  tokenType: 'Bearer',
+  tokenPrefix: '',
+  loginRedirect: '/todos',
+  signupRedirect: '/login',
+  logoutRedirect: '/login',
+  expiredRedirect: 1,
+  storageChangedReload: true,
+  storageKey: 'aurelia_authentication',
+  storage: 'sessionStorage',
+  withCredentials: false,
+};
