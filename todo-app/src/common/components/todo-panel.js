@@ -1,7 +1,4 @@
 import {bindable} from "aurelia-framework";
-import {inject} from "aurelia-dependency-injection";
-
-inject(Element);
 
 export class TodoPanel {
 
@@ -15,8 +12,8 @@ export class TodoPanel {
 
   @bindable isDragging;
 
-  constructor(element) {
-    this.element = element;
+  constructor() {
+
   }
 
   dragStart(event) {
