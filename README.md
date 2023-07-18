@@ -15,6 +15,10 @@ Clone the repository and run `composer install` and `npm install` on the backend
 
 Run `php artisan serve` on the backend and run `au run --watch` on the frontend.
 
+## Generate JWT secret
+
+Run `php artisan jwt:secret` on the backend.
+
 ## Testing
 
 Run `php artisan test` on the backend and run `au test` on the frontend.
