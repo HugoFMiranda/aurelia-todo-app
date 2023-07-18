@@ -1,7 +1,8 @@
 import {inject, observable} from 'aurelia-framework';
 import {TodoService} from '../common/services/todoService';
+import {EventAggregator} from 'aurelia-event-aggregator';
 
-@inject(TodoService)
+@inject(TodoService, EventAggregator)
 export class Todos {
 
   @observable todos = [];
@@ -11,25 +12,42 @@ export class Todos {
   todosDone = [];
   showModal = false;
 
-  constructor(todoService) {
+  constructor(todoService, eventAggregator) {
     this.todoService = todoService;
     this.newTodo = '';
+    this.tags = '';
+    this.eventAggregator = eventAggregator;
   }
 
   async activate() {
     this.todos = await this.todoService.getTodos();
   }
 
+  attached() {
+    this.subscription = this.eventAggregator.subscribe('todo:updated', async todo => {
+      this.todos = await this.todoService.getTodos();
+      this.todos = [...this.todos];
+    });
+  }
+
+  detached() {
+    this.subscription.dispose();
+  }
+
   async addTodo() {
+    const tagArray = this.tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+
     if (this.newTodo) {
       await this.todoService.addTodo({
         text: this.newTodo,
         status: 'todo',
+        tags: tagArray,
       }).then(async () => {
         this.todos = await this.todoService.getTodos();
         this.todos = [...this.todos];
       });
       this.newTodo = '';
+      this.tags = '';
       this.showModal = false;
     }
   }

@@ -64,6 +64,19 @@ export class TodoService {
   async updateStatus(todo) {
     try {
       const headers = await this.getAuthorizationHeaders();
+      const response = await this.http.fetch(`http://localhost:8000/api/todos/${todo.id}/status`, {
+        method: 'PUT', headers, body: JSON.stringify(todo),
+      });
+      return response.json();
+    } catch (error) {
+      console.error('Failed to update todo:', error);
+      return [];
+    }
+  }
+
+  async updateTodo(todo) {
+    try {
+      const headers = await this.getAuthorizationHeaders();
       const response = await this.http.fetch(`http://localhost:8000/api/todos/${todo.id}`, {
         method: 'PUT', headers, body: JSON.stringify(todo),
       });
