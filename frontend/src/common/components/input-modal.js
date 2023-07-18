@@ -2,13 +2,16 @@ import {bindable, inject} from 'aurelia-framework';
 
 @inject(Element)
 export class InputModal {
-  @bindable addTodo = () => {
+  @bindable actionTodo = () => {
   };
 
   @bindable closeModal = () => {
   };
 
   @bindable newTodo = '';
+  @bindable tags = '';
+  @bindable title = '';
+  @bindable actionName= '';
 
   constructor(element) {
     this.element = element;

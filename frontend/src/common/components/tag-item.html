@@ -1,0 +1,7 @@
+<template>
+  <div class="flex-1 max-w-fit flex items-center" repeat.for="tag of tags">
+    <div class='w-full m-1 px-1 text-[12px] rounded-md' css="background-color: ${tag.color}">
+      <span class="text-[12px] font-semibold">${tag.name}</span>
+    </div>
+  </div>
+</template>

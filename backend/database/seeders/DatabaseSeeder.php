@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             RolePermissionSeeder::class,
             TodoStatusesSeeder::class,
             TodoSeeder::class,
+            TagsSeeder::class,
         ]);
     }
 }

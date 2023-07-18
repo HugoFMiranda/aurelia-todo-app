@@ -1,0 +1,28 @@
+<template>
+  <require from="./tag-item"></require>
+
+  <div click.delegate="!isDragging ? openModal() :  {}">
+    <div
+      class='w-full ${todo.status === "done" ? "bg-indigo-500 opacity-50" : "bg-indigo-500"} flex flex-wrap rounded-t-md min-h-2 ${todo.tags.length > 0 ? "h-fit" : "h-2"}'>
+      <tag-item class="flex flex-wrap" if.bind="todo.tags.length > 0" tags.bind="todo.tags"></tag-item>
+    </div>
+    <div
+      class='p-2 rounded-b-md text-gray-800 text-[15px] flex items-center justify-between ${todo.status === "done" ? "bg-gray-100 opacity-50" : "bg-white"}'>
+            <span class="flex flex-col">
+              <span class='${todo.status === "done" ? "line-through" : "font-semibold"}'>${todo.text}</span>
+              <span class="text-[12px] italic text-gray-400">Updated at ${todo.updated_at}</span>
+            </span>
+      <div click.delegate="!isDragging ? $event.stopPropagation() : {}">
+        <button class="rounded-md border border-red-500 bg-red-500 hover:bg-red-400 hover:border-red-400 ml-1.5"
+                click.delegate="!isDragging ? rmTodo({todo: todo.id}) : {}"
+                type="button">
+          <span class="sr-only">Remove todo</span>
+          <svg class="w-6 h-6 text-white transform rotate-45" fill="none" stroke="currentColor" stroke-width="1.5"
+               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</template>

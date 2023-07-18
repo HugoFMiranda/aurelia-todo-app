@@ -35,9 +35,12 @@ Run `php artisan test` on the backend and run `au test` on the frontend.
 - [x] Mark todo as done
 - [x] Mark todo as not done
 - [x] Filter todos by status
-- [ ] Add tags to todo
+- [x] Add tags to todo
+- [x] Login and permissions logic
+- [x] Use JWT for authentication
+- [x] Use EventAggregator to communicate between components
 - [ ] Filter todos by tags
-- [ ] Login and permissions logic
+- [ ] Update example image
 
 ## The APP
 

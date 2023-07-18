@@ -13,48 +13,53 @@
           <div class="flex-1">
             <h1 class="font-bold leading-7 text-gray-900 truncate text-2xl tracking-tight italic">Todo</h1>
           </div>
-          <div if.bind="todosTodo.length !== 0" class="flex flex-col items-end flex-1 pr-1.5">
-            <button type="button"
-                    class="rounded-md border border-indigo-500 p-1 bg-indigo-500 hover:bg-indigo-400 hover:border-indigo-400 hover:scale-105 transition-all duration-150 ease-in-out"
-                    click.delegate="openModal()">
+          <div class="flex flex-col items-end flex-1 pr-1.5" if.bind="todosTodo.length !== 0">
+            <button
+              class="rounded-md border border-indigo-500 p-1 bg-indigo-500 hover:bg-indigo-400 hover:border-indigo-400 hover:scale-105 transition-all duration-150 ease-in-out"
+              click.delegate="openModal()"
+              type="button">
               <span class="sr-only">Add Todo</span>
               <span class="text-white font-semibold">New Todo</span>
             </button>
           </div>
         </div>
-        <empty-state if.bind="todosTodo.length === 0" is-new="true" dragover.delegate="dragOver($event)"
-                     class='${isDragging ? "opacity-75 rounded-lg border-2 border-dashed border-blue-500" : ""}'
-                     drop.delegate="drop($event)"
+        <empty-state class='${isDragging ? "opacity-75 rounded-lg border-2 border-dashed border-blue-500" : ""}'
+                     dragover.delegate="dragOver($event)" drop.delegate="drop($event)"
+                     if.bind="todosTodo.length === 0"
+                     is-new="true"
                      open-modal.call="openModal()"></empty-state>
-        <todo-panel else class='${isDragging ? "opacity-75 rounded-lg border-2 border-dashed border-blue-500" : ""}'
-                    todos.bind="todosTodo" create-button="true"
-                    open-modal.call="openModal()" dragover.delegate="dragOver($event)" drop.delegate="drop($event)"
-                    rm-todo.call="rmTodo(todo)" is-dragging.two-way="isDragging"></todo-panel>
+        <todo-panel class='${isDragging ? "opacity-75 rounded-lg border-2 border-dashed border-blue-500" : ""}'
+                    create-button="true"
+                    dragover.delegate="dragOver($event)" drop.delegate="drop($event)"
+                    else is-dragging.two-way="isDragging"
+                    rm-todo.call="rmTodo(todo)" todos.bind="todosTodo"></todo-panel>
       </div>
       <div class="flex flex-col flex-1 h-full" id="doing-panel">
         <h1 class="font-bold leading-7 text-gray-900 truncate text-2xl tracking-tight italic pb-9">Doing</h1>
-        <empty-state if.bind="todosDoing.length === 0" dragover.delegate="dragOver($event)"
-                     class='${isDragging ? "opacity-75 rounded-lg border-2 border-dashed border-blue-500" : ""}'
-                     drop.delegate="drop($event)"></empty-state>
-        <todo-panel else
-                    class='${isDragging ? "opacity-75 rounded-lg border-2 border-dashed border-blue-500" : ""}'
-                    todos.bind="todosDoing"
-                    dragover.delegate="dragOver($event)" drop.delegate="drop($event)"
-                    rm-todo.call="rmTodo(todo)" is-dragging.two-way="isDragging"></todo-panel>
+        <empty-state class='${isDragging ? "opacity-75 rounded-lg border-2 border-dashed border-blue-500" : ""}'
+                     dragover.delegate="dragOver($event)"
+                     drop.delegate="drop($event)"
+                     if.bind="todosDoing.length === 0"></empty-state>
+        <todo-panel class='${isDragging ? "opacity-75 rounded-lg border-2 border-dashed border-blue-500" : ""}'
+                    dragover.delegate="dragOver($event)"
+                    drop.delegate="drop($event)"
+                    else is-dragging.two-way="isDragging"
+                    rm-todo.call="rmTodo(todo)" todos.bind="todosDoing"></todo-panel>
       </div>
       <div class="flex flex-col flex-1 h-full" id="done-panel">
         <h1 class="font-bold leading-7 text-gray-900 truncate text-2xl tracking-tight italic pb-9">Done</h1>
-        <empty-state if.bind="todosDone.length === 0" dragover.delegate="dragOver($event)"
-                     class='${isDragging ? "opacity-75 rounded-lg border-2 border-dashed border-blue-500" : ""}'
-                     drop.delegate="drop($event)"></empty-state>
-        <todo-panel else
-                    class='${isDragging ? "opacity-75 rounded-lg border-2 border-dashed border-blue-500" : ""}'
-                    todos.bind="todosDone" rm-todo.call="rmTodo(todo)"
-                    dragover.delegate="dragOver($event)" drop.delegate="drop($event)"
-                    is-dragging.bind="isDragging" is-dragging.two-way="isDragging"></todo-panel>
+        <empty-state class='${isDragging ? "opacity-75 rounded-lg border-2 border-dashed border-blue-500" : ""}'
+                     dragover.delegate="dragOver($event)"
+                     drop.delegate="drop($event)"
+                     if.bind="todosDone.length === 0"></empty-state>
+        <todo-panel class='${isDragging ? "opacity-75 rounded-lg border-2 border-dashed border-blue-500" : ""}'
+                    dragover.delegate="dragOver($event)"
+                    drop.delegate="drop($event)" else
+                    is-dragging.bind="isDragging" is-dragging.two-way="isDragging"
+                    rm-todo.call="rmTodo(todo)" todos.bind="todosDone"></todo-panel>
       </div>
     </div>
   </section>
-  <input-modal if.bind="showModal" close-modal.call="closeModal()" add-todo.call="addTodo()"
-               new-todo.two-way="newTodo"></input-modal>
+  <input-modal title="New Todo" action-name="Create" action-todo.call="addTodo()" close-modal.call="closeModal()" if.bind="showModal"
+               new-todo.two-way="newTodo" tags.two-way="tags"></input-modal>
 </template>
