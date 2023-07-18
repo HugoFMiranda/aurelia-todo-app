@@ -11,13 +11,17 @@ The app is split into two parts, the backend and the frontend. The backend is bu
 
 Clone the repository and run `composer install` and `npm install` on the backend and run `npm install` on the frontend.
 
-## Usage
+## Configure .env
 
-Run `php artisan serve` on the backend and run `au run --watch` on the frontend.
+Copy the `.env.example` file to `.env` and configure the database connection on the backend.
 
 ## Generate JWT secret
 
 Run `php artisan jwt:secret` on the backend.
+
+## Usage
+
+Run `php artisan serve` on the backend and run `au run --watch` on the frontend.
 
 ## Testing
 
