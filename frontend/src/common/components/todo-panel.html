@@ -3,23 +3,27 @@
     class='bg-indigo-200 w-full min-h-[80vh] max-h-[80vh] overflow-y-scroll scrollbar rounded-lg border-2 p-2 border-gray-300 hover:border-blue-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-150 ease-in-out'>
     <div>
       <ul class="px-1.5" repeat.for="todo of todos">
-        <li draggable="true"
-            dragstart.trigger="dragStart($event)"
-            id="${todo.id}"
-            class="cursor-move py-1.5 flex flex-col rounded-md border-1 border-indigo-500 drop-shadow-md ${todo.isRemoving ? 'fade-out' : ''}  ${isDragging ? 'opacity-25' : ''}">
+        <li
+          class="cursor-move py-1.5 flex flex-col rounded-md border-1 border-indigo-500 drop-shadow-md ${todo.isRemoving ? 'fade-out' : ''}  ${isDragging ? 'opacity-25' : ''}"
+          draggable="true"
+          dragstart.trigger="dragStart($event)"
+          id="${todo.id}">
           <div class="w-full bg-indigo-500 h-1.5 rounded-t-md"></div>
           <span
-            class='p-2 rounded-b-md text-gray-800 text-[15px] flex justify-between items-center ${todo.status === "done" ? "bg-gray-100 opacity-50" : "bg-white"}'>
-            <span class='${todo.status === "done" ? "line-through" : "font-semibold"}'>${todo.text}</span>
-            <button type="button"
-                    class="rounded-md border border-red-500 bg-red-500 hover:bg-red-400 hover:border-red-400 ml-1.5"
-                    click.delegate="rmTodo({todo: todo.id})">
-            <span class="sr-only">Remove todo</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                 stroke="currentColor" class="w-6 h-6 text-white transform rotate-45">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"/>
-          </svg>
-          </button>
+            class='p-2 rounded-b-md text-gray-800 text-[15px] flex items-center justify-between ${todo.status === "done" ? "bg-gray-100 opacity-50" : "bg-white"}'>
+            <span class="flex flex-col">
+              <span class='${todo.status === "done" ? "line-through" : "font-semibold"}'>${todo.text}</span>
+              <span class="text-[12px] italic text-gray-400">Updated at ${todo.updated_at}</span>
+            </span>
+            <button class="rounded-md border border-red-500 bg-red-500 hover:bg-red-400 hover:border-red-400 ml-1.5"
+                    click.delegate="rmTodo({todo: todo.id})"
+                    type="button">
+              <span class="sr-only">Remove todo</span>
+              <svg class="w-6 h-6 text-white transform rotate-45" fill="none" stroke="currentColor" stroke-width="1.5"
+                   viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
           </span>
         </li>
       </ul>

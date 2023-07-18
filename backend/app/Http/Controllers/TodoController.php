@@ -23,8 +23,8 @@ class TodoController extends Controller
                     'id' => $todo->id,
                     'text' => $todo->text,
                     'status' => $todo->status->name,
-                    'created_at' => $todo->created_at->format('d-m-Y'),
-                    'updated_at' => $todo->updated_at->format('d-m-Y'),
+                    'created_at' => $todo->created_at->format('d-m-Y H:i:s'),
+                    'updated_at' => $todo->updated_at->format('d-m-Y H:i:s'),
                 ];
             });
 
