@@ -9,6 +9,8 @@ export class App {
   }
 
   configureRouter(config, router) {
+    config.options = config.options || {};
+
     config.title = 'Aurelia';
     config.options.root = '/';
     config.options.pushState = true;

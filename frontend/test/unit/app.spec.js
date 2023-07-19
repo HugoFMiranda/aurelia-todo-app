@@ -1,4 +1,5 @@
 import {App} from '../../src/app';
+import {PLATFORM} from "aurelia-pal";
 
 class RouterStub {
   configure(handler) {
@@ -9,7 +10,6 @@ class RouterStub {
     this.routes = routes;
   }
 }
-
 describe('the App module', () => {
   let sut;
   let mockedRouter;
@@ -30,19 +30,31 @@ describe('the App module', () => {
 
   it('should have a welcome route', () => {
     expect(sut.router.routes).toContainEqual({
-      route: ['', 'welcome'], name: 'welcome',  moduleId: './welcome', nav: true, title: 'Welcome'
+      route: ['', 'welcome'],
+      name: 'Welcome',
+      moduleId: PLATFORM.moduleName('welcome/welcome'),
+      nav: true,
+      title: 'Dashboard'
     });
   });
 
   it('should have a users route', () => {
     expect(sut.router.routes).toContainEqual({
-      route: 'users', name: 'users', moduleId: './users', nav: true, title: 'Github Users'
+      route: 'users',
+      name: 'users',
+      moduleId: PLATFORM.moduleName('users/users'),
+      nav: true,
+      title: 'Github Users'
     });
   });
 
-  it('should have a child router route', () => {
+  it('should have a todos route', function () {
     expect(sut.router.routes).toContainEqual({
-      route: 'child-router', name: 'child-router', moduleId: './child-router', nav: true, title: 'Child Router'
+      route: 'todos',
+      name: 'Todos',
+      moduleId: PLATFORM.moduleName('todos/todos'),
+      nav: true,
+      title: 'Todos'
     });
   });
 });

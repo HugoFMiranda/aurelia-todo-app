@@ -100,7 +100,6 @@ export class AuthService {
       const decodedToken = jwtDecode(this.token);
       this.user = decodedToken.user;
     } catch (error) {
-      console.error('Error decoding JWT token:', error);
       this.user = null;
     }
   }

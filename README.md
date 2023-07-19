@@ -41,6 +41,7 @@ Run `php artisan test` on the backend and run `au test` on the frontend.
 - [x] Use EventAggregator to communicate between components
 - [ ] Filter todos by tags
 - [ ] Update example image
+- [ ] Unit tests (frontend: 50%)
 
 ## The APP
 

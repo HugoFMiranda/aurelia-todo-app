@@ -9,9 +9,11 @@ export class NoAuthApp {
   }
 
   configureRouter(config, router) {
+    config.options = config.options || {};
+
     config.title = 'Aurelia';
-    config.options.pushState = true;
     config.options.root = '/';
+    config.options.pushState = true;
     config.options.hashChange = false;
     config.map([
       {
