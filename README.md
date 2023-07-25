@@ -9,19 +9,33 @@ The app is split into two parts, the backend and the frontend. The backend is bu
 
 ## Installation
 
+## Without Docker
+
 Clone the repository and run `composer install` and `npm install` on the backend and run `npm install` on the frontend.
 
-## Configure .env
+### Configure .env
 
 Copy the `.env.example` file to `.env` and configure the database connection on the backend.
 
-## Generate JWT secret
+### Generate JWT secret
 
 Run `php artisan jwt:secret` on the backend.
 
-## Usage
+### Usage
 
 Run `php artisan serve` on the backend and run `au run --watch` on the frontend.
+
+## With Docker
+
+Clone the repository and run `docker-compose up -d` on the root of the project.
+
+### Configure .env
+
+Copy the `.env.example` file to `.env` and configure the database connection on the backend.
+
+### Done
+
+The app should be running on `http://localhost:8080`.
 
 ## Testing
 
@@ -39,9 +53,9 @@ Run `php artisan test` on the backend and run `au test` on the frontend.
 - [x] Login and permissions logic
 - [x] Use JWT for authentication
 - [x] Use EventAggregator to communicate between components
+- [x] Unit tests
 - [ ] Filter todos by tags
 - [ ] Update example image
-- [ ] Unit tests (frontend: 50%)
 
 ## The APP
 
