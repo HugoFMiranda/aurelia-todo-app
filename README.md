@@ -54,9 +54,9 @@ Run `php artisan test` on the backend and run `au test` on the frontend.
 - [x] Use JWT for authentication
 - [x] Use EventAggregator to communicate between components
 - [x] Unit tests
+- [x] Update example image
 - [ ] Filter todos by tags
-- [ ] Update example image
 
 ## The APP
 
-![The app](https://i.imgur.com/iJXVzIQ.png)
+![The app](https://i.imgur.com/314IqnI.png)
